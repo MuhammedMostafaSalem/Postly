@@ -25,7 +25,7 @@ export async function getStaticProps({ params }) {
     };
 }
 const PostDetails = ({ post }) => {
-    console.log(post)
+    
     return (
         <div>
             <h3 className="text-xl font-semibold py-5 text-center">Post Details</h3>
