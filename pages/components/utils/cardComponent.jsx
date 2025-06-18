@@ -21,7 +21,7 @@ const CardComponent = ({ id, title, description, cardWidth, typePage }) => {
 
             {
                 typePage === 'home' ?
-                <Link href={`/${id}`} className="bg-gray-900 text-white rounded-2xl p-2 cursor-pointer w-[100px]">Read more</Link>
+                <Link href={`/postDetails/${id}`} className="bg-gray-900 text-white rounded-2xl p-2 cursor-pointer w-[100px]">Read more</Link>
                 : null
             }
         </div>
