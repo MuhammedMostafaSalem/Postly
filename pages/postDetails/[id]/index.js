@@ -1,6 +1,7 @@
 import CardComponent from '@/pages/components/utils/cardComponent'
 import axios from 'axios';
 
+// getStaticPaths is used to identify all the post paths (IDs) for which pages will be generated.
 export async function getStaticPaths() {
     const res = await axios.get("https://jsonplaceholder.typicode.com/posts");
     const posts = res.data;
@@ -14,6 +15,8 @@ export async function getStaticPaths() {
         fallback: false,
     };
 }
+
+// getStaticProps تجلب تفاصيل بوست محدد حسب المعرف (id)
 export async function getStaticProps({ params }) {
     const res = await axios.get(`https://jsonplaceholder.typicode.com/posts/${params.id}`);
     const post = res.data;

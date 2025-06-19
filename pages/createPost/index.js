@@ -1,43 +1,53 @@
 import axios from 'axios';
 import { useRouter } from 'next/router';
-import React, { useState, useEffect  } from 'react'
+import React, { useState } from 'react'
 import { toast } from 'react-toastify';
 
 const CreatePost = () => {
     const router = useRouter();
+
+    //Basic case for storing field values
     const [formData, setFormData] = useState({
         title: "",
         description: "",
         userId: 10,
     });
+
+    //State to store errors for each field
     const [errors, setErrors] = useState({
         title: "",
         description: "",
     });
 
+    // When handle change values ​​in any field
     const handleChange = (e) => {
         const { name, value } = e.target;
 
+        // Update the field value in formData
         setFormData((prev) => ({
             ...prev,
             [name]: value,
         }));
 
+        // Immediate field validation (if empty, error appears)
         setErrors((prev) => ({
             ...prev,
             [name]: value.trim() === "" ? `${name[0].toUpperCase() + name.slice(1)} is required` : "",
         }));
     }
 
+    // When you press the send button submit
     const handleSubmit = async(e) => {
         e.preventDefault();
 
+        // Check that all fields are not empty
         let newErrors = {};
         if (!formData.title.trim()) newErrors.title = "Title is required";
         if (!formData.description.trim()) newErrors.description = "Description is required";
 
         setErrors(newErrors);
 
+        // If there is any error, we stop the process.
         if (Object.keys(newErrors).length > 0) {
             return;
         }
